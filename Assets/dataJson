@@ -1,0 +1,15 @@
+{
+    "_levelIndex": 0,
+    "_levels": [
+        {
+            "_index": 1,
+            "_totalGodlOnStart": 100,
+            "_totalEnergyOnStart": 20
+        },
+        {
+            "_index": 1,
+            "_totalGodlOnStart": 300,
+            "_totalEnergyOnStart": 20
+        }
+    ]
+}
