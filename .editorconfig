@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# RCS1036: Remove redundant empty line.
+dotnet_diagnostic.RCS1036.severity = none
+
+# RCS1110: Declare type inside namespace.
+dotnet_diagnostic.RCS1110.severity = silent
+
+# RCS1213: Remove unused member declaration.
+dotnet_diagnostic.RCS1213.severity = silent
