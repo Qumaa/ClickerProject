@@ -59,13 +59,13 @@ namespace Project.Level.Editor
         }
         private int RepeatInt(int value, int length) => (int)Mathf.Repeat(value, length);
 
-        private float DrawScaleHandle(Vector3 gridCenter, Vector2 gridHalfSize, Vector2 direction, float handlesSize = 1)
+        private float DrawScaleHandle(Vector3 gridCenter, Vector2 gridExtends, Vector2 direction, float handlesSize = 1)
         {
-            float localSize = Dot(gridHalfSize, direction);
+            float localSize = Dot(gridExtends, direction);
             var pos = gridCenter + (direction * localSize).XYtoXoY();
 
-            localSize = Mathf.Sign(localSize);
-            return (Handles.ScaleSlider(localSize, pos, direction.XYtoXoY(), Quaternion.identity, handlesSize, 1) - localSize) * handlesSize;
+            //localSize = Mathf.Sign(localSize);
+            return (Handles.ScaleSlider(localSize, pos, direction.XYtoXoY(), Quaternion.identity, handlesSize, 1) - localSize);// * handlesSize;
         }
         private float Dot(Vector2 origin, Vector2 direction) => Mathf.Abs(Vector2.Dot(origin, direction));
 

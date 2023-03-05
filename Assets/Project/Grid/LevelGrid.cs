@@ -26,11 +26,13 @@ namespace Project.Level
             private set => SetGridSize(value);
         }
 
-        private void SetGridSize(Vector2Int newSize)
+        private bool SetGridSize(Vector2Int newSize)
         {
             var gridMaxSize = Vector2Int.one;
 
             _gridSizeInternal = Vector2Int.Max(newSize, gridMaxSize);
+
+            return _gridSizeInternal == newSize;
         }
 
         #endregion
@@ -83,15 +85,18 @@ namespace Project.Level
             transform.position - ((Vector2)Size / 2).XYtoXoY();
         void ILevelGridInternal.Expand(Vector2 direction, int cells)
         {
-            //if (cells == 0) return;
-            //if (Mathf.Abs(cells) > 100) return;
+            if (cells == 0) return;
+            if (Mathf.Abs(cells) > 100) return;
 
-            //var newSize = Size + (direction.ToIntVec2() * cells);
+            var directionAbs = Vector2.Max(direction, -direction);
 
-            //SetGridSize(newSize);
-            //transform.position += direction.XYtoXoY() * (cells / 2f);
+            var newSize = Size + (directionAbs.ToIntVec2() * cells);
 
-            Debug.Log($"Expanded {cells} cells in {direction} direction");
+            if (SetGridSize(newSize))
+            {
+                transform.position += direction.XYtoXoY() * (cells / 2f);
+                Debug.Log($"Expanded {cells} cells in {direction} direction");
+            }
         }
 
         #endregion
